@@ -4,6 +4,7 @@
 from __future__ import print_function
 import sys
 import argparse
+import random
 
 
 COWACTERS = {}
@@ -1026,35 +1027,55 @@ class www(Cowacter):
 COWACTERS['www'] = www
 
 
+def milk_random_cow(msg):
+    cow = random.choice(COWACTERS.items())[1]
+    return cow(eyes=random.choice(EYES.items())[0],
+        tongue=random.choice((True, False)),
+        thoughts=random.choice((True, False))
+        ).milk(msg)
+#milk_random_cow()
+
 def main():
 
     parser = argparse.ArgumentParser("cow.py")
-    parser.add_argument('-l', '--list', help=("Output all available "
+    parser.add_argument('-l', '--list',
+                        default=False,
+                        help=("Output all available "
                                               "cowacters"),
                         action="store_true")
     parser.add_argument('-L', '--list-variations',
+                        default=False,
                         help=("Output all available cowacters and their "
                               "variations."),
                         action="store_true")
     parser.add_argument('-t', '--thoughts',
+                        default=False,
                         help=("Use a thought bubble "
                               "instead of a dialog bubble."
                               ),
                         action="store_true")
-    parser.add_argument('-u', '--tongue', help=("Add a tounge to the"
-                                                "selected cowacter,"
-                                                "if appropriate."),
+    parser.add_argument('-u', '--tongue',
+                        default=False,
+                        help=("Add a tounge to the"
+                              "selected cowacter,"
+                              "if appropriate."),
                         action="store_true")
-    parser.add_argument('-e', '--eyes', help=("Use a specifice type "
-                                              "of eyes on the "
-                                              "cowacter"))
+    parser.add_argument('-e', '--eyes',
+                        default='default',
+                        help=("Use a specifice type "
+                              "of eyes on the "
+                              "cowacter"))
     parser.add_argument('-c', '--cowacter',
+                        default='default',
                         help=("Specify which cowacter "
                               "to use. (case insensitive)"))
     parser.add_argument('-E', '--list-eyes',
                         help=("Print a listing "
                               "of the available eye "
                               "types."),
+                        action="store_true")
+    parser.add_argument('-r', '--random',
+                        help=("Choose a cowacter at random."),
                         action="store_true")
     args = parser.parse_args()
 
@@ -1081,7 +1102,24 @@ def main():
     if exit_early:
         sys.exit(0)
 
+    cow = COWACTERS['default']
+    if args.cowacter:
+        try:
+            cow = COWACTERS[args.cowacter.lower()]
+        except KeyError:
+            print("{} is an invalid cowacter".format(args.cowacter))
+            sys.exit(1)
+
     msg = sys.stdin.read()
+
+    if args.random:
+        print(milk_random_cow(msg))
+        sys.exit(0)
+
+    print(cow(eyes=args.eyes,
+        tongue=args.tongue,
+        thoughts=args.thoughts
+       ).milk(msg))
 # main()
 
 if __name__ == '__main__':
