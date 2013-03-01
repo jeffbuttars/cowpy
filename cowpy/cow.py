@@ -3,6 +3,8 @@
 
 from __future__ import print_function
 import sys
+import os
+import shutil
 import argparse
 import random
 
@@ -1078,12 +1080,28 @@ def main():
                         help=("Choose a cowacter at random."),
                         action="store_true")
     parser.add_argument('-C', '--copy',
-                        help=("Create a local copy of cow.py "),
-                        action="for you to include in your own python program.")
+                        help=("Create a local copy of cow.py ",
+                              "for you to include in your own "
+                              "python program."),
+                        action="store_true")
+
     args = parser.parse_args()
 
     msg = ''
     exit_early = False
+
+    if args.copy:
+        thisfile = os.path.realpath(__file__)
+        bname = os.path.basename(thisfile)
+        outfile = os.path.join(os.curdir, bname)
+        print("{} -> {}".format(thisfile, outfile))
+        if os.path.exists(bname):
+            print("The file {} bname already exists, not making the copy.")
+            sys.exit(1)
+
+        shutil.copyfile(thisfile, bname)
+        exit_early = True
+
     if args.list or args.list_variations:
         exit_early = True
         for k, cow in sorted(COWACTERS.iteritems()):
@@ -1120,9 +1138,10 @@ def main():
         sys.exit(0)
 
     print(cow(eyes=args.eyes,
-        tongue=args.tongue,
-        thoughts=args.thoughts
-       ).milk(msg))
+          tongue=args.tongue,
+          thoughts=args.thoughts
+              ).milk(msg)
+          )
 # main()
 
 if __name__ == '__main__':
