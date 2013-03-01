@@ -1092,14 +1092,19 @@ def main():
 
     if args.copy:
         thisfile = os.path.realpath(__file__)
+        thisfile = ''.join(os.path.splitext(thisfile)[:-1]) + '.py'
+
         bname = os.path.basename(thisfile)
         outfile = os.path.join(os.curdir, bname)
-        print("{} -> {}".format(thisfile, outfile))
+        outfile = ''.join(os.path.splitext(outfile)[:-1]) + '.py'
+
         if os.path.exists(bname):
             print("The file {} bname already exists, not making the copy.")
             sys.exit(1)
+        else:
+            print("{} -> {}".format(thisfile, outfile))
 
-        shutil.copyfile(thisfile, bname)
+        shutil.copyfile(thisfile, outfile)
         exit_early = True
 
     if args.list or args.list_variations:

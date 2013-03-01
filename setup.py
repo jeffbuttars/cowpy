@@ -9,5 +9,6 @@ setup(name='Cowpy',
       author_email="jeffbuttars@gmail.com",
       url="https://github.com/jeffbuttars/cowpy",
       version='0.9',
-      packages=['cowpy']
+      packages=['cowpy'],
+      scripts=['scripts/cowpy']
       )
