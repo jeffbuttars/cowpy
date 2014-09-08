@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # encoding: utf-8
+from __future__ import print_function
 
 import logging
 
@@ -1057,6 +1058,12 @@ def main():
         description=("Cowsay for Python. Directly executable and importable.")
     )
 
+    parser.add_argument('msg',
+                        default= ["Cowsay | cowpy. Please seek --help"],
+                        type=str, nargs='*',
+                        help=("Message for the cow to say"),
+                       )
+
     parser.add_argument('-l', '--list',
                         default=False,
                         help=("Output all available cowacters"),
@@ -1093,7 +1100,12 @@ def main():
     logger.debug("parse the args")
     args = parser.parse_args()
 
-    msg = ''
+    msg = " ".join(args.msg)
+
+    if not sys.stdin.isatty():
+        logger.debug("reading from stdin")
+        msg = sys.stdin.read()
+
     exit_early = False
 
     if args.copy:
@@ -1115,15 +1127,17 @@ def main():
 
     if args.list or args.list_variations:
         exit_early = True
-        for k, cow in sorted(COWACTERS.iteritems()):
+        for k, cow in sorted(COWACTERS.items()):
             if args.list_variations:
                 for eye in sorted(EYES):
-                    print(cow(eyes=eye).milk(msg))
-                    print(cow(eyes=eye, thoughts=True).milk(msg))
-                    print(cow(eyes=eye, tongue=True).milk(msg))
+                    print(cow(eyes=eye).milk("{}, eye is {}".format(k, eye)))
+                    print(cow(
+                        eyes=eye, thoughts=True).milk("{}, eye is {}, with bubble".format(k, eye)))
+                    print(cow(
+                        eyes=eye, tongue=True).milk("{}, eye is {}, with tounge".format(k, eye)))
                 # end for k, eye in EYES
             else:
-                print(cow().milk(msg))
+                print(cow().milk(k))
     # end for cow in COWACTERS
 
     if args.list_eyes:
@@ -1142,11 +1156,6 @@ def main():
         except KeyError:
             print("{} is an invalid cowacter".format(args.cowacter))
             sys.exit(1)
-
-    msg = "Cowsay | cowpy"
-    if not sys.stdin.isatty():
-        logger.debug("read stdin")
-        msg = sys.stdin.read()
 
     if args.random:
         print(milk_random_cow(msg))
