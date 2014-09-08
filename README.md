@@ -33,36 +33,39 @@ cowpy my message
 CLI Arguments:
 
 ```sh
+Output all available cowacters
 cowpy --list
 cowpy -l
-Output all available cowacters
-```
 
-    parser.add_argument('-L', '--list-variations',
-                        default=False,
-                        help=("Output all available cowacters and their variations."),
-                        action="store_true")
-    parser.add_argument('-t', '--thoughts',
-                        default=False,
-                        help=("Use a thought bubble instead of a dialog bubble."),
-                        action="store_true")
-    parser.add_argument('-u', '--tongue',
-                        default=False,
-                        help=("Add a tounge to the selected cowacter,  if appropriate."),
-                        action="store_true")
-    parser.add_argument('-e', '--eyes',
-                        default='default',
-                        help=("Use a specifice type of eyes on the cowacter"))
-    parser.add_argument('-c', '--cowacter',
-                        default='default',
-                        help=("Specify which cowacter to use. (case insensitive)"))
-    parser.add_argument('-E', '--list-eyes',
-                        help=("Print a listing of the available eye types."),
-                        action="store_true")
-    parser.add_argument('-r', '--random',
-                        help=("Choose a cowacter at random."),
-                        action="store_true")
-    parser.add_argument('-C', '--copy',
-                        help=("Create a local copy of cow.py for you to include in your own "
-                              "python program."),
-                        action="store_true")
+Output all available cowacters and their variations.
+cowpy --list-variations
+cowpy -L
+
+Use a thought bubble instead of a dialog bubble.
+cowpy --thoughts
+cowpy -t
+
+Add a tounge to the selected cowacter,  if appropriate.
+cowpy --tongue
+cowpy -u 
+
+Use a specifice type of eyes on the cowacter
+cowpy --eyes
+cowpy -e 
+
+Specify which cowacter to use. (case insensitive)
+cowpy --cowacter
+cowpy -c 
+
+Print a listing of the available eye types.
+cowpy --list-eyes
+cowpy -E 
+
+Choose a cowacter at random.
+cowpy --random
+cowpy -r 
+
+Create a local copy of cow.py for you to include in your own python program.
+cowpy --copy
+cowpy -C
+```
