@@ -32,7 +32,7 @@ cowpy my message
     
 CLI Arguments:
 
-```sh
+```
 Output all available cowacters
 cowpy --list
 cowpy -l
