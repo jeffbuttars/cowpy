@@ -1,11 +1,13 @@
 cowpy
 =====
 
+_This is a direct derivation of the cowsay program_
+
+
 [Install](#install)  
 [Module Usage](#module-usage)  
 [CLI Usage](#cli-usage)  
 
-_This is a direct derivation of the cowsay program_
 
 ## Install
 
