@@ -30,16 +30,14 @@ or
 cowpy my message
 ```
     
-    parser.add_argument('msg',
-                        default= ["Cowsay | cowpy. Please seek --help"],
-                        type=str, nargs='*',
-                        help=("Message for the cow to say"),
-                       )
+CLI Arguments:
 
-    parser.add_argument('-l', '--list',
-                        default=False,
-                        help=("Output all available cowacters"),
-                        action="store_true")
+```sh
+cowpy --list
+cowpy -l
+Output all available cowacters
+```
+
     parser.add_argument('-L', '--list-variations',
                         default=False,
                         help=("Output all available cowacters and their variations."),
