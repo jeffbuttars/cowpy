@@ -1,6 +1,10 @@
 cowpy
 =====
 
+[Install](#Install)
+[Module Usage](#Module Usage)
+[CLI Usage](#CLI Usage)
+
 _This is a direct derivation of the cowsay program_
 
 ## Install
