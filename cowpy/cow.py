@@ -1,7 +1,19 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-from __future__ import print_function
+import logging
+
+# Set up the logger
+logger = logging.getLogger("cowpy")
+# Use a console handler, set it to debug by default
+logger_ch = logging.StreamHandler()
+logger.setLevel(logging.DEBUG)
+log_formatter = logging.Formatter(('%(levelname)s: %(asctime)s %(processName)s:%(process)d'
+                                   ' %(filename)s:%(lineno)s %(module)s::%(funcName)s()'
+                                   ' -- %(message)s'))
+logger_ch.setFormatter(log_formatter)
+logger.addHandler(logger_ch)
+
 import sys
 import os
 import shutil
@@ -1038,53 +1050,47 @@ def milk_random_cow(msg):
 #milk_random_cow()
 
 def main():
+    logger.debug("main")
 
-    parser = argparse.ArgumentParser("cow.py")
+    parser = argparse.ArgumentParser(
+        prog="cowpy",
+        description=("Cowsay for Python. Directly executable and importable.")
+    )
+
     parser.add_argument('-l', '--list',
                         default=False,
-                        help=("Output all available "
-                                              "cowacters"),
+                        help=("Output all available cowacters"),
                         action="store_true")
     parser.add_argument('-L', '--list-variations',
                         default=False,
-                        help=("Output all available cowacters and their "
-                              "variations."),
+                        help=("Output all available cowacters and their variations."),
                         action="store_true")
     parser.add_argument('-t', '--thoughts',
                         default=False,
-                        help=("Use a thought bubble "
-                              "instead of a dialog bubble."
-                              ),
+                        help=("Use a thought bubble instead of a dialog bubble."),
                         action="store_true")
     parser.add_argument('-u', '--tongue',
                         default=False,
-                        help=("Add a tounge to the"
-                              "selected cowacter,"
-                              "if appropriate."),
+                        help=("Add a tounge to the selected cowacter,  if appropriate."),
                         action="store_true")
     parser.add_argument('-e', '--eyes',
                         default='default',
-                        help=("Use a specifice type "
-                              "of eyes on the "
-                              "cowacter"))
+                        help=("Use a specifice type of eyes on the cowacter"))
     parser.add_argument('-c', '--cowacter',
                         default='default',
-                        help=("Specify which cowacter "
-                              "to use. (case insensitive)"))
+                        help=("Specify which cowacter to use. (case insensitive)"))
     parser.add_argument('-E', '--list-eyes',
-                        help=("Print a listing "
-                              "of the available eye "
-                              "types."),
+                        help=("Print a listing of the available eye types."),
                         action="store_true")
     parser.add_argument('-r', '--random',
                         help=("Choose a cowacter at random."),
                         action="store_true")
     parser.add_argument('-C', '--copy',
-                        help=("Create a local copy of cow.py ",
-                              "for you to include in your own "
+                        help=("Create a local copy of cow.py for you to include in your own "
                               "python program."),
                         action="store_true")
 
+    logger.debug("parse the args")
     args = parser.parse_args()
 
     msg = ''
@@ -1128,6 +1134,7 @@ def main():
     if exit_early:
         sys.exit(0)
 
+    logger.debug("find the cow")
     cow = COWACTERS['default']
     if args.cowacter:
         try:
@@ -1136,7 +1143,10 @@ def main():
             print("{} is an invalid cowacter".format(args.cowacter))
             sys.exit(1)
 
-    msg = sys.stdin.read()
+    msg = "Cowsay | cowpy"
+    if not sys.stdin.isatty():
+        logger.debug("read stdin")
+        msg = sys.stdin.read()
 
     if args.random:
         print(milk_random_cow(msg))
