@@ -36,6 +36,7 @@ EYES = {
 }
 
 
+
 class Cowacter(object):
     """Docstring for Cowacter """
 
@@ -43,7 +44,7 @@ class Cowacter(object):
                  body=None):
 
         self._eye_type = eyes
-        self._eyes = EYES[eyes]
+        self._eyes = EYES.get(eyes, 'default')
         self._thoughts = '\\'
         if thoughts:
             self._thoughts = 'o'
@@ -1042,6 +1043,21 @@ class www(Cowacter):
 COWACTERS['www'] = www
 
 
+def get_cow(name='default'):
+    return COWACTERS.get(name, 'default')
+# get_cow()
+
+
+def eye_options():
+    return EYES.keys()
+# eye_optoins()
+
+
+def cow_options():
+    return COWACTERS.keys()
+# cow_options()
+
+
 def milk_random_cow(msg):
     cow = random.choice(COWACTERS.items())[1]
     return cow(eyes=random.choice(EYES.items())[0],
@@ -1127,18 +1143,18 @@ def main():
 
     if args.list or args.list_variations:
         exit_early = True
-        for k, cow in sorted(COWACTERS.items()):
+        for k, cow in sorted(cow_options()):
             if args.list_variations:
                 for eye in sorted(EYES):
                     print(cow(eyes=eye).milk("{}, eye is {}".format(k, eye)))
                     print(cow(
-                        eyes=eye, thoughts=True).milk("{}, eye is {}, with bubble".format(k, eye)))
+                        eyes=eye, thoughts=True).milk(
+                            "{}, eye is {}, with bubble".format(k, eye)))
                     print(cow(
                         eyes=eye, tongue=True).milk("{}, eye is {}, with tounge".format(k, eye)))
                 # end for k, eye in EYES
             else:
                 print(cow().milk(k))
-    # end for cow in COWACTERS
 
     if args.list_eyes:
         exit_early = True
@@ -1149,10 +1165,10 @@ def main():
         sys.exit(0)
 
     logger.debug("find the cow")
-    cow = COWACTERS['default']
+    cow = get_cow()
     if args.cowacter:
         try:
-            cow = COWACTERS[args.cowacter.lower()]
+            cow = get_cow(args.cowacter.lower())
         except KeyError:
             print("{} is an invalid cowacter".format(args.cowacter))
             sys.exit(1)
