@@ -1,9 +1,9 @@
 cowpy
 =====
 
-[Install](#Install)
-[Module Usage](#Module Usage)
-[CLI Usage](#CLI Usage)
+[Install](#install)  
+[Module Usage](#module-usage)  
+[CLI Usage](#cli-usage)  
 
 _This is a direct derivation of the cowsay program_
 
