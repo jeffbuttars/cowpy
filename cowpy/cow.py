@@ -1059,8 +1059,8 @@ def cow_options():
 
 
 def milk_random_cow(msg):
-    cow = random.choice(COWACTERS.items())[1]
-    return cow(eyes=random.choice(EYES.items())[0],
+    cow = random.choice(list(COWACTERS.values()))
+    return cow(eyes=random.choice(list(EYES.keys())),
         tongue=random.choice((True, False)),
         thoughts=random.choice((True, False))
         ).milk(msg)
