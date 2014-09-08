@@ -5,7 +5,9 @@ _This is a direct derivation of the cowsay program_
 
 ## Install
 
-`pip install cowpy`
+```sh
+pip install cowpy
+```
 
 ## What's the point? This is has been done, many times already.
 Cowsay, in Python, makes pies. One file, easily embedded into your app.
