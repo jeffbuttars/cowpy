@@ -178,7 +178,7 @@ cowpy -C
               __/-___-- -__
              /            _ \
  _________ 
-< bongcow >
+< bongcow : NSFW >
  --------- 
          \
           \
@@ -345,7 +345,7 @@ cowpy -C
                 \XXXXXXXXXXXXXXXXXXXXXXXXXX/
                   ""VXXXXXXXXXXXXXXXXXXV""
  ___________ 
-< headincow >
+< headincow : NSFW >
  ----------- 
     \
      \
@@ -579,7 +579,7 @@ cowpy -C
            (__)    )\
             ||--|| *
  ___________ 
-< sodomized >
+< sodomized : NSFW >
  ----------- 
       \                _
        \              (_)
@@ -649,7 +649,7 @@ cowpy -C
 
             COW-OPERATION
  ___________ 
-< telebears >
+< telebears : NSFW >
  ----------- 
       \                _
        \              (_)   <-- TeleBEARS
