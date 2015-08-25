@@ -58,7 +58,6 @@ class Cowacter(object):
                               "         (__)\\       )\\/\\\n"
                               "          {tongue} ||----w |\n"
                               "           ||     ||")
-    #__init__()
 
     def _maxlen(self, lines):
         m = -1
@@ -66,10 +65,8 @@ class Cowacter(object):
             l = len(line)
             if l > m:
                 m = l
-        # end for line in msg.splitlines()
 
         return m
-    #_maxlen()
 
     def _bubble(self, message):
 
@@ -81,7 +78,6 @@ class Cowacter(object):
 
         def pad(llen):
             return ' ' * (max - llen)
-        #pad()
 
         # Try to kick out just the balloon first.
         res += " {} \n".format('_' * max2)
@@ -97,7 +93,6 @@ class Cowacter(object):
                 res += fmt.format('/', line, pad(len(line)), '\\')
                 for line in lines:
                     res += fmt.format('|', line, pad(len(line)), '|')
-                # end for line in message.splitlines
 
                 res += fmt.format('\\', lastline, pad(len(lastline)), '/')
         else:
@@ -106,7 +101,6 @@ class Cowacter(object):
 
         res += " {} \n".format('-' * max2)
         return res
-    #_bubble()
 
     def milk(self, msg):
         msg = msg.strip()
@@ -126,8 +120,8 @@ class Cowacter(object):
                                            tongue=self._tongue)
         except Exception as e:
             return "Unable to print the message :(\n{}".format(e)
-    #milk()
-#Cowacter
+
+
 COWACTERS['default'] = Cowacter
 
 
@@ -155,8 +149,8 @@ class Beavis(Cowacter):
             "             /            _ \\")
 
         super(Beavis, self).__init__(**kwargs)
-    #__init__()
-#Beavis
+
+
 COWACTERS['beavis'] = Beavis
 
 
@@ -177,8 +171,8 @@ class BongCow(Cowacter):
             "            _+#+_\n")
 
         super(BongCow, self).__init__(**kwargs)
-    #__init__()
-#BongCow
+
+
 COWACTERS['bongcow'] = BongCow
 
 
@@ -194,8 +188,8 @@ class BudFrogs(Cowacter):
             "          \\__|\\ |    (-___-)        | /|__/\n"
             "          '  '--'    ==`-'==        '--'  '")
         super(BudFrogs, self).__init__(**kwargs)
-    #__init__()
-#BudFrogs
+
+
 COWACTERS['budfrogs'] = BudFrogs
 
 
@@ -209,8 +203,8 @@ class Bunny(Cowacter):
             "        ( )\n"
             "      .( o ).")
         super(Bunny, self).__init__(**kwargs)
-    #__init__()
-#Bunny
+
+
 COWACTERS['bunny'] = Bunny
 
 
@@ -237,8 +231,8 @@ class Cheese(Cowacter):
             "        ***    ***\n"
             "       /___\\  /___\\")
         super(Cheese, self).__init__(**kwargs)
-    #__init__()
-#Cheese
+
+
 COWACTERS['cheese'] = Cheese
 
 
@@ -256,8 +250,8 @@ class Cower(Cowacter):
             "\n"
             "             Cower....")
         super(Cower, self).__init__(**kwargs)
-    #__init__()
-#Cower
+
+
 COWACTERS['cower'] = Cower
 
 
@@ -285,8 +279,8 @@ class Daemon(Cowacter):
             "      ,'  ,-----'   |        \\\n"
             "      `--{{__________)        \\/")
         super(Daemon, self).__init__(**kwargs)
-    #__init__()
-#Daemon
+
+
 COWACTERS['daemon'] = Daemon
 
 
@@ -311,8 +305,8 @@ class DragonAndCow(Cowacter):
                 "   //__\\\\  \\__ Ack!   ///.----..<        \\             _ -~\n"
                 "  //    \\\\               ///-._ _ _ _ _ _ _{{^ - - - - ~")
         super(DragonAndCow, self).__init__(**kwargs)
-    #__init__()
-#DragonAndCow
+
+
 COWACTERS['dragonandcow'] = DragonAndCow
 
 
@@ -332,8 +326,8 @@ class Eyes(Cowacter):
             "        \"*\$bd\$\$\$\$      '*\$\$\$\$\$\$\$\$\$\$\$o+#\" \n"
             "             \"\"\"\"          \"\"\"\"\"\"\" \n")
         super(Eyes, self).__init__(**kwargs)
-    #__init__()
-#Eyes
+
+
 COWACTERS['eyes'] = Eyes
 
 
@@ -352,8 +346,8 @@ class FlamingSheep(Cowacter):
             "                `YY~~~~YY'    \n"
             "                 ||    ||     ")
         super(FlamingSheep, self).__init__(**kwargs)
-    #__init__()
-#FlamingSheep
+
+
 COWACTERS['flamingsheep'] = FlamingSheep
 
 
@@ -383,8 +377,8 @@ class Ghostbusters(Cowacter):
             "                \\XXXXXXXXXXXXXXXXXXXXXXXXXX/\n"
             "                  \"\"VXXXXXXXXXXXXXXXXXXV\"\"")
         super(Ghostbusters, self).__init__(**kwargs)
-    #__init__()
-#Ghostbusters
+
+
 COWACTERS['ghostbusters'] = Ghostbusters
 
 
@@ -400,8 +394,8 @@ class HeadInCow(Cowacter):
             "   {tongue}   ||----w |  \\ \\     \\_____ |\n"
             "        ||     ||   ||           ||")
         super(HeadInCow, self).__init__(**kwargs)
-    #__init__()
-#HeadInCow
+
+
 COWACTERS['headincow'] = HeadInCow
 
 
@@ -416,8 +410,8 @@ class HelloKitty(Cowacter):
             "     | O . O|\n"
             "      \\_____/")
         super(HelloKitty, self).__init__(**kwargs)
-    #__init__()
-#HelloKitty
+
+
 COWACTERS['hellokitty'] = HelloKitty
 
 
@@ -447,8 +441,8 @@ class Kiss(Cowacter):
             "      |  /    |            |\n"
             "      |       |            |")
         super(Kiss, self).__init__(**kwargs)
-    #__init__()
-#Kiss
+
+
 COWACTERS['kiss'] = Kiss
 
 
@@ -463,8 +457,8 @@ class Kitty(Cowacter):
             "      _.. `--'_..-_/   /--' _ .' ,4\n"
             "   ( i l ),-''  ( l i),'  ( ( ! .-'")
         super(Kitty, self).__init__(**kwargs)
-    #__init__()
-#Kitty
+
+
 COWACTERS['kitty'] = Kitty
 
 
@@ -479,8 +473,8 @@ class Koala(Cowacter):
             "     ()~*~()   \n"
             "     (_)-(_)")
         super(Koala, self).__init__(**kwargs)
-    #__init__()
-#Koala
+
+
 COWACTERS['koala'] = Koala
 
 
@@ -495,8 +489,8 @@ class Koala(Cowacter):
             "     ()~*~()   \n"
             "     (_)-(_)")
         super(Koala, self).__init__(**kwargs)
-    #__init__()
-#Koala
+
+
 COWACTERS['koala'] = Koala
 
 
@@ -518,8 +512,8 @@ class Kosh(Cowacter):
             "|                         |\n"
             "|                         |")
         super(Kosh, self).__init__(**kwargs)
-    #__init__()
-#Kosh
+
+
 COWACTERS['kosh'] = Kosh
 
 
@@ -537,8 +531,8 @@ class LukeKoala(Cowacter):
             "     Sywalker\n"
             "     koala")
         super(LukeKoala, self).__init__(**kwargs)
-    #__init__()
-#LukeKoala
+
+
 COWACTERS['lukekoala'] = LukeKoala
 
 
@@ -562,8 +556,8 @@ class MechAndCow(Cowacter):
             "       ||----w |           ___,;`----'.___L_,-'`\__\n"
             "       ||     ||          i_____;----\.____i\"\"\____\\")
         super(MechAndCow, self).__init__(**kwargs)
-    #__init__()
-#MechAndCow
+
+
 COWACTERS['mechandcow'] = MechAndCow
 
 
@@ -581,8 +575,8 @@ class Meow(Cowacter):
             "          __/\\ / _/ \\/ __,-'   ) ,' _|'\n"
             "         (((__/(((_.' ((___..-'((__,'")
         super(Meow, self).__init__(**kwargs)
-    #__init__()
-#Meow
+
+
 COWACTERS['meow'] = Meow
 
 
@@ -606,8 +600,8 @@ class Milk(Cowacter):
             "        | |    | | \n"
             "       <__/    \\__>")
         super(Milk, self).__init__(**kwargs)
-    #__init__()
-#Milk
+
+
 COWACTERS['milk'] = Milk
 
 
@@ -624,8 +618,8 @@ class Moofasa(Cowacter):
             "\n"
             "                Moofasa")
         super(Moofasa, self).__init__(**kwargs)
-    #__init__()
-#Moofasa
+
+
 COWACTERS['moofasa'] = Moofasa
 
 
@@ -640,8 +634,8 @@ class Moose(Cowacter):
             "            {tongue}   ||----w |\n"
             "               ||     ||")
         super(Moose, self).__init__(**kwargs)
-    #__init__()
-#Moose
+
+
 COWACTERS['moose'] = Moose
 
 
@@ -654,8 +648,8 @@ class Mutilated(Cowacter):
             " (__)      ||     ||  \\/\\\n"
             "  {tongue}")
         super(Mutilated, self).__init__(**kwargs)
-    #__init__()
-#Mutilated
+
+
 COWACTERS['mutilated'] = Mutilated
 
 
@@ -680,8 +674,8 @@ class Ren(Cowacter):
             " /  ||||__ \n"
             "    (___)_)")
         super(Ren, self).__init__(**kwargs)
-    #__init__()
-#Ren
+
+
 COWACTERS['ren'] = Ren
 
 
@@ -696,8 +690,8 @@ class Satanic(Cowacter):
             "*  ||----||      \n"
             "   ~~    ~~")
         super(Satanic, self).__init__(**kwargs)
-    #__init__()
-#Satanic
+
+
 COWACTERS['satanic'] = Satanic
 
 
@@ -713,8 +707,8 @@ class Sheep(Cowacter):
             "           `YY~~~~YY'\n"
             "            ||    ||")
         super(Sheep, self).__init__(**kwargs)
-    #__init__()
-#Sheep
+
+
 COWACTERS['sheep'] = Sheep
 
 
@@ -731,8 +725,8 @@ class Skeleton(Cowacter):
             "                   ~ ~       ~ ~\n"
             "                     Scowleton")
         super(Skeleton, self).__init__(**kwargs)
-    #__init__()
-#Skeleton
+
+
 COWACTERS['skeleton'] = Skeleton
 
 
@@ -744,8 +738,8 @@ class Small(Cowacter):
             "           (__)    )\\\n"
             "            {tongue}||--|| *")
         super(Small, self).__init__(**kwargs)
-    #__init__()
-#Small
+
+
 COWACTERS['small'] = Small
 
 
@@ -760,8 +754,8 @@ class Sodomized(Cowacter):
             "             {tongue} ||----w ((\n"
             "                ||     ||>> ")
         super(Sodomized, self).__init__(**kwargs)
-    #__init__()
-#Sodomized
+
+
 COWACTERS['sodomized'] = Sodomized
 
 
@@ -779,8 +773,8 @@ class Squirrel(Cowacter):
             "       .(   _(   )_.'\n"
             "      '---.~_ _ _|")
         super(Squirrel, self).__init__(**kwargs)
-    #__init__()
-#Squirrel
+
+
 COWACTERS['squirrel'] = Squirrel
 
 
@@ -802,8 +796,8 @@ class Stegosaurus(Cowacter):
             "                     |     /        |     /     ~-.     `-. _  _  _\n"
             "                     |_____|        |_____|         ~ - . _ _ _ _ _>")
         super(Stegosaurus, self).__init__(**kwargs)
-    #__init__()
-#Stegosaurus
+
+
 COWACTERS['Stegosaurus'] = Stegosaurus
 
 
@@ -825,8 +819,8 @@ class Stimpy(Cowacter):
             "       __ || __||\n"
             "      (____(____)")
         super(Stimpy, self).__init__(**kwargs)
-    #__init__()
-#Stimpy
+
+
 COWACTERS['stimpy'] = Stimpy
 
 
@@ -839,8 +833,8 @@ class Supermilker(Cowacter):
             "       {tongue} ||----W |       |Milker|\n"
             "          ||    UDDDDDDDDD|______|")
         super(Supermilker, self).__init__(**kwargs)
-    #__init__()
-#Supermilker
+    
+#Su
 COWACTERS['supermilker'] = Supermilker
 
 
@@ -867,8 +861,8 @@ class Surgery(Cowacter):
             "\n"
             "            COW-OPERATION")
         super(Surgery, self).__init__(**kwargs)
-    #__init__()
-#Surgery
+
+
 COWACTERS['surgery'] = Surgery
 
 
@@ -883,8 +877,8 @@ class Telebears(Cowacter):
             "             {tongue} ||----w ((\n"
             "                ||     ||>>")
         super(Telebears, self).__init__(**kwargs)
-    #__init__()
-#Telebears
+
+
 COWACTERS['telebears'] = Telebears
 
 
@@ -898,8 +892,8 @@ class ThreeEyes(Cowacter):
             "                ||     ||")
         super(ThreeEyes, self).__init__(**kwargs)
         self._eyes = self._eyes[0] * 3
-    #__init__()
-#ThreeEyes
+
+
 COWACTERS['threeeyes'] = ThreeEyes
 
 
@@ -928,8 +922,8 @@ class Turkey(Cowacter):
             "                    ^^^//\\\\_^^//\\\\_^       ^(\\_\\_\\_\\)\n"
             "                      ^^^ ^^ ^^^ ^")
         super(Turkey, self).__init__(**kwargs)
-    #__init__()
-#Turkey
+
+
 COWACTERS['turkey'] = Turkey
 
 
@@ -952,8 +946,8 @@ class Turtle(Cowacter):
             "                  (_(__/  ./     /                    \\_\\      \\.\n"
             "                         (_(___/                         \\_____)_)")
         super(Turtle, self).__init__(**kwargs)
-    #__init__()
-#Turtle
+
+
 COWACTERS['turtle'] = Turtle
 
 
@@ -970,8 +964,8 @@ class Tux(Cowacter):
             "    /'\\_   _/`\\\n"
             "    \\___)=(___/")
         super(Tux, self).__init__(**kwargs)
-    #__init__()
-#Tux
+
+
 COWACTERS['tux'] = Tux
 
 
@@ -988,8 +982,8 @@ class Udder(Cowacter):
             "           ||    UU  ||\n"
             "           ==        ==")
         super(Udder, self).__init__(**kwargs)
-    #__init__()
-#Udder
+
+
 COWACTERS['udder'] = Udder
 
 
@@ -1008,8 +1002,8 @@ class VaderKoala(Cowacter):
             "     Vader\n"
             "     koala")
         super(VaderKoala, self).__init__(**kwargs)
-    #__init__()
-#VaderKoala
+
+
 COWACTERS['vaderkoala'] = VaderKoala
 
 
@@ -1025,8 +1019,8 @@ class Vader(Cowacter):
             "\n"
             "               Cowth Vader")
         super(Vader, self).__init__(**kwargs)
-    #__init__()
-#Vader
+
+
 COWACTERS['vader'] = Vader
 
 
@@ -1039,24 +1033,21 @@ class www(Cowacter):
             "             {tongue} ||--WWW |\n"
             "                ||     ||")
         super(www, self).__init__(**kwargs)
-    #__init__()
-#www
+
+
 COWACTERS['www'] = www
 
 
 def get_cow(name='default'):
     return COWACTERS.get(name, 'default')
-# get_cow()
 
 
 def eye_options():
     return EYES.keys()
-# eye_optoins()
 
 
 def cow_options():
     return COWACTERS.keys()
-# cow_options()
 
 
 def milk_random_cow(msg, sfw=True):
@@ -1075,7 +1066,6 @@ def milk_random_cow(msg, sfw=True):
         tongue=random.choice((True, False)),
         thoughts=random.choice((True, False))
         ).milk(msg)
-#milk_random_cow()
 
 
 def not_safe_for_work(cowacter, eyes):
@@ -1202,7 +1192,7 @@ def main():
           thoughts=args.thoughts
               ).milk(msg)
           )
-# main()
+
 
 if __name__ == '__main__':
     main()
