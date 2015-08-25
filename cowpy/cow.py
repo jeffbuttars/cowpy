@@ -34,7 +34,8 @@ EYES = {
     'wired': "OO",
     'young': "..",
 }
-
+NOT_SAFE_FOR_WORK_COWACTERS = ['bongcow', 'sodomized', 'headincow']
+NOT_SAFE_FOR_WORK_EYES = ['stoned']
 
 
 class Cowacter(object):
@@ -1058,13 +1059,29 @@ def cow_options():
 # cow_options()
 
 
-def milk_random_cow(msg):
-    cow = random.choice(list(COWACTERS.values()))
-    return cow(eyes=random.choice(list(EYES.keys())),
+def milk_random_cow(msg, sfw=True):
+    cowacter = random.choice(list(COWACTERS.keys()))
+    eyes = random.choice(list(EYES.keys()))
+
+    if sfw:
+        while not_safe_for_work(cowacter, eyes):
+            logger.debug(cowacter + ":" + eyes + " not safe for work")
+            cowacter = random.choice(list(COWACTERS.keys()))
+            eyes = random.choice(list(EYES.keys()))
+
+    cow = COWACTERS[cowacter]
+
+    return cow(eyes=eyes,
         tongue=random.choice((True, False)),
         thoughts=random.choice((True, False))
         ).milk(msg)
 #milk_random_cow()
+
+
+def not_safe_for_work(cowacter, eyes):
+    return (cowacter in NOT_SAFE_FOR_WORK_COWACTERS) \
+        or (eyes in NOT_SAFE_FOR_WORK_EYES)
+
 
 def main():
     logger.debug("main")
@@ -1106,7 +1123,10 @@ def main():
                         help=("Print a listing of the available eye types."),
                         action="store_true")
     parser.add_argument('-r', '--random',
-                        help=("Choose a cowacter at random."),
+                        help=("Choose a cowacter at random (consider --nsfw)."),
+                        action="store_true")
+    parser.add_argument('-x', '--nsfw',
+                        help=("Enable 'not safe for work' cowacters and eyes."),
                         action="store_true")
     parser.add_argument('-C', '--copy',
                         help=("Create a local copy of cow.py for you to include in your own "
@@ -1174,7 +1194,7 @@ def main():
             sys.exit(1)
 
     if args.random:
-        print(milk_random_cow(msg))
+        print(milk_random_cow(msg, sfw=(not args.nsfw)))
         sys.exit(0)
 
     print(cow(eyes=args.eyes,
