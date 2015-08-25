@@ -1153,7 +1153,7 @@ def main():
 
     if args.list or args.list_variations:
         exit_early = True
-        for k, cow in sorted(cow_options()):
+        for k, cow in sorted(COWACTERS.items(), key=lambda x: x[0]):
             if args.list_variations:
                 for eye in sorted(EYES):
                     print(cow(eyes=eye).milk("{}, eye is {}".format(k, eye)))
@@ -1162,7 +1162,6 @@ def main():
                             "{}, eye is {}, with bubble".format(k, eye)))
                     print(cow(
                         eyes=eye, tongue=True).milk("{}, eye is {}, with tounge".format(k, eye)))
-                # end for k, eye in EYES
             else:
                 print(cow().milk(k))
 
