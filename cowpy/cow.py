@@ -34,8 +34,37 @@ EYES = {
     'wired': "OO",
     'young': "..",
 }
-NOT_SAFE_FOR_WORK_COWACTERS = ['bongcow', 'sodomized', 'headincow']
+NOT_SAFE_FOR_WORK_COWACTERS = ['bongcow', 'sodomized', 'headincow', 'telebears']
 NOT_SAFE_FOR_WORK_EYES = ['stoned']
+
+
+def get_cowacters(sfw=True, sort=False):
+    cows = COWACTERS
+    if sfw:
+        ckeys = set(COWACTERS.keys()) - set(NOT_SAFE_FOR_WORK_COWACTERS)
+        cows = {k: cows[k] for k in ckeys}
+
+    if sort:
+        return sorted(cows.items(), key=lambda x: x[0])
+
+    return cows.items()
+
+
+def get_eyes(sfw=True, sort=False):
+    eyes = EYES
+    if sfw:
+        ekeys = set(EYES.keys()) - set(NOT_SAFE_FOR_WORK_EYES)
+        eyes = {k: eyes[k] for k in ekeys}
+
+    if sort:
+        return sorted(eyes.items(), key=lambda x: x[0])
+
+    return eyes.items()
+
+
+def not_safe_for_work(cow='', eyes=''):
+    return (cow in NOT_SAFE_FOR_WORK_COWACTERS) \
+            or (eyes in NOT_SAFE_FOR_WORK_EYES)
 
 
 class Cowacter(object):
@@ -1051,26 +1080,15 @@ def cow_options():
 
 
 def milk_random_cow(msg, sfw=True):
-    cowacter = random.choice(list(COWACTERS.keys()))
-    eyes = random.choice(list(EYES.keys()))
-
-    if sfw:
-        while not_safe_for_work(cowacter, eyes):
-            logger.debug(cowacter + ":" + eyes + " not safe for work")
-            cowacter = random.choice(list(COWACTERS.keys()))
-            eyes = random.choice(list(EYES.keys()))
+    cowacter = random.choice([x[0] for x in get_cowacters(sfw=sfw)])
+    eyes = random.choice([x[0] for x in get_eyes(sfw=sfw)])
 
     cow = COWACTERS[cowacter]
 
     return cow(eyes=eyes,
-        tongue=random.choice((True, False)),
-        thoughts=random.choice((True, False))
-        ).milk(msg)
-
-
-def not_safe_for_work(cowacter, eyes):
-    return (cowacter in NOT_SAFE_FOR_WORK_COWACTERS) \
-        or (eyes in NOT_SAFE_FOR_WORK_EYES)
+               tongue=random.choice((True, False)),
+               thoughts=random.choice((True, False))
+               ).milk(msg)
 
 
 def main():
@@ -1082,10 +1100,10 @@ def main():
     )
 
     parser.add_argument('msg',
-                        default= ["Cowsay | cowpy. Please seek --help"],
+                        default=["Cowsay | cowpy. Please seek --help"],
                         type=str, nargs='*',
                         help=("Message for the cow to say"),
-                       )
+                        )
 
     parser.add_argument('-l', '--list',
                         default=False,
@@ -1133,6 +1151,7 @@ def main():
         msg = sys.stdin.read()
 
     exit_early = False
+    sfw = not args.nsfw
 
     if args.copy:
         thisfile = os.path.realpath(__file__)
@@ -1153,22 +1172,28 @@ def main():
 
     if args.list or args.list_variations:
         exit_early = True
-        for k, cow in sorted(COWACTERS.items(), key=lambda x: x[0]):
+        for cow_name, cow in get_cowacters(sfw=sfw, sort=True):
             if args.list_variations:
-                for eye in sorted(EYES):
-                    print(cow(eyes=eye).milk("{}, eye is {}".format(k, eye)))
+                for eye_name, _ in get_eyes(sfw=sfw, sort=True):
+
+                    nsfw = (not_safe_for_work(cow=cow_name, eyes=eye_name) and ' : NSFW') or ''
+
+                    print(cow(eyes=eye_name).milk("{}, eye is {}{}".format(
+                        cow_name, eye_name, nsfw)))
                     print(cow(
-                        eyes=eye, thoughts=True).milk(
-                            "{}, eye is {}, with bubble".format(k, eye)))
+                        eyes=eye_name, thoughts=True).milk(
+                            "{}, eye is {}, with bubble{}".format(cow_name, eye_name, nsfw)))
                     print(cow(
-                        eyes=eye, tongue=True).milk("{}, eye is {}, with tounge".format(k, eye)))
+                        eyes=eye_name, tongue=True).milk("{}, eye is {}, with tounge{}".format(
+                            cow_name, eye_name, nsfw)))
             else:
-                print(cow().milk(k))
+                nsfw = (not_safe_for_work(cow=cow_name) and ' : NSFW') or ''
+                print(cow().milk(cow_name + nsfw))
 
     if args.list_eyes:
         exit_early = True
-        for k, v in sorted(EYES.iteritems()):
-            print("{} : '{}'".format(k, v))
+        for k, v in get_eyes(sfw=sfw, sort=True):
+            print("{} : '{}'{}".format(k, v, (not_safe_for_work(eyes=k) and ' : NSFW') or ''))
 
     if exit_early:
         sys.exit(0)
@@ -1183,7 +1208,7 @@ def main():
             sys.exit(1)
 
     if args.random:
-        print(milk_random_cow(msg, sfw=(not args.nsfw)))
+        print(milk_random_cow(msg, sfw=sfw))
         sys.exit(0)
 
     print(cow(eyes=args.eyes,

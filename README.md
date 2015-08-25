@@ -81,7 +81,8 @@ print(cow_options)
 
 ## CLI Usage
 
-The cowsay message is provided by `stdin` or as a command line parameter.
+The cowsay message is provided by `stdin` or as a command line parameter.  
+*NSFW* cows and eyes are not displayed in listings by default.
 
 ```sh
 echo "my message" | cowpy
@@ -125,6 +126,10 @@ cowpy -E
 Choose a cowacter at random.
 cowpy --random
 cowpy -r 
+
+Enable NSFW cow output. (Use with --random, --list, --list-eyes and --list-available)
+cowpy --nsfw
+cowpy -x
 
 Create a local copy of cow.py for you to include in your own python program.
 cowpy --copy
