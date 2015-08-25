@@ -27,7 +27,7 @@ class Cowacter(object):
     """Docstring for Cowacter """
 
     def __init__(self, eyes='default', thoughts=False, tongue=False,
-                 body=None):
+                 make_pie=True, body=None):
 
         self._eye_type = eyes
         self._eyes = EYES[eyes]
@@ -56,13 +56,14 @@ class Cowacter(object):
         return m
     #_maxlen()
 
-    def _bubble(self, message):
+    def _bubble(self, message, pre_pad=0):
 
         lines = message.splitlines()
         max = self._maxlen(lines)
         max2 = max + 2  # border spacing
-        fmt = "{} {} {}{}\n"
+        fmt = "{}{} {} {}{}\n"
         res = ""
+        prefix_pad = ' ' * pre_pad
 
         def pad(llen):
             return ' ' * (max - llen)
@@ -73,21 +74,27 @@ class Cowacter(object):
         if len(lines) > 1:
             if len(lines) == 2:
                 line = lines.pop(0)
-                res += fmt.format('/', line, pad(len(line)), '\\')
+                res += fmt.format(prefix_pad,
+                                  '/', line, pad(len(line)), '\\')
                 line = lines.pop(0)
-                res += fmt.format('\\', line, pad(len(line)), '/')
+                res += fmt.format(prefix_pad,
+                                  '\\', line, pad(len(line)), '/')
             else:
                 line = lines.pop(0)
                 lastline = lines.pop(0)
-                res += fmt.format('/', line, pad(len(line)), '\\')
+                res += fmt.format(prefix_pad,
+                                  '/', line, pad(len(line)), '\\')
                 for line in lines:
-                    res += fmt.format('|', line, pad(len(line)), '|')
+                    res += fmt.format(prefix_pad,
+                                      '|', line, pad(len(line)), '|')
                 # end for line in message.splitlines
 
-                res += fmt.format('\\', lastline, pad(len(lastline)), '/')
+                res += fmt.format(prefix_pad,
+                                  '\\', lastline, pad(len(lastline)), '/')
         else:
             line = lines.pop()
-            res += fmt.format('<', line, pad(len(line)), '>')
+            res += fmt.format(prefix_pad,
+                              '<', line, pad(len(line)), '>')
 
         res += " {} \n".format('-' * max2)
         return res
@@ -139,6 +146,7 @@ class Beavis(Cowacter):
             "              __/-___-- -__\n"
             "             /            _ \\")
 
+        kwargs['make_pie'] = False
         super(Beavis, self).__init__(**kwargs)
     #__init__()
 #Beavis
@@ -295,6 +303,8 @@ class DragonAndCow(Cowacter):
                 "   (    (--)          .----~-.\\        \\-`                 .~\n"
                 "   //__\\\\  \\__ Ack!   ///.----..<        \\             _ -~\n"
                 "  //    \\\\               ///-._ _ _ _ _ _ _{{^ - - - - ~")
+
+        kwargs['make_pie'] = False
         super(DragonAndCow, self).__init__(**kwargs)
     #__init__()
 #DragonAndCow
@@ -316,6 +326,8 @@ class Eyes(Cowacter):
             "      ^\$\$\$B  \$\$\$\$\\     \$\$\$\$\$\$\$\$\$\$\$\$   d\$\$R\n"
             "        \"*\$bd\$\$\$\$      '*\$\$\$\$\$\$\$\$\$\$\$o+#\" \n"
             "             \"\"\"\"          \"\"\"\"\"\"\" \n")
+
+        kwargs['make_pie'] = False
         super(Eyes, self).__init__(**kwargs)
     #__init__()
 #Eyes
@@ -431,6 +443,8 @@ class Kiss(Cowacter):
             "       |      | :;;;'     \\\n"
             "      |  /    |            |\n"
             "      |       |            |")
+
+        kwargs['make_pie'] = False
         super(Kiss, self).__init__(**kwargs)
     #__init__()
 #Kiss
@@ -502,6 +516,8 @@ class Kosh(Cowacter):
             "|      \\___________/      |\n"
             "|                         |\n"
             "|                         |")
+
+        kwargs['make_pie'] = False
         super(Kosh, self).__init__(**kwargs)
     #__init__()
 #Kosh
@@ -851,6 +867,8 @@ class Surgery(Cowacter):
             "                '.'.`\n"
             "\n"
             "            COW-OPERATION")
+
+        kwargs['make_pie'] = False
         super(Surgery, self).__init__(**kwargs)
     #__init__()
 #Surgery
