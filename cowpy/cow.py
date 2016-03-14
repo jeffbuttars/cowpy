@@ -1067,6 +1067,29 @@ class www(Cowacter):
 COWACTERS['www'] = www
 
 
+class Stegosaurus(Cowacter):
+    def __init__(self, **kwargs):
+        kwargs['body'] = (
+            '''{thoughts}                             .       .\n'''
+            ''' {thoughts}                           / `.   .' " \n'''
+            '''  {thoughts}                  .---.  <    > <    >  .---.\n'''
+            '''   {thoughts}                 |    \\  \\ - ~ ~ - /  /    |\n'''
+            '''         _____          ..-~             ~-..-~\n'''
+            '''        |     |   \\~~~\\.'                    `./~~~/\n'''
+            '''       ---------   \\__/                        \\__/\n'''
+            '''      .'  O    \\     /               /       \\  " \n'''
+            '''     (_____,    `._.'               |         }}  \\/~~~/\n'''
+            '''      `----.          /       }}     |        /    \\__/\n'''
+            '''            `-.      |       /      |       /      `. ,~~|\n'''
+            '''                ~-.__|      /_ - ~ ^|      /- _      `..-'   \n'''
+            '''                     |     /        |     /     ~-.     `-. _  _  _\n'''
+            '''                     |_____|        |_____|         ~ - . _ _ _ _ _>'''
+        )
+        super(Stegosaurus, self).__init__(**kwargs)
+#stegosaurus
+COWACTERS['stegosaurus'] = Stegosaurus
+
+
 def get_cow(name='default'):
     return COWACTERS.get(name, 'default')
 
