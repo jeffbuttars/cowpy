@@ -827,7 +827,7 @@ class Stegosaurus(Cowacter):
         super(Stegosaurus, self).__init__(**kwargs)
 
 
-COWACTERS['Stegosaurus'] = Stegosaurus
+COWACTERS['stegosaurus'] = Stegosaurus
 
 
 class Stimpy(Cowacter):
@@ -862,7 +862,7 @@ class Supermilker(Cowacter):
             "       {tongue} ||----W |       |Milker|\n"
             "          ||    UDDDDDDDDD|______|")
         super(Supermilker, self).__init__(**kwargs)
-    
+
 #Su
 COWACTERS['supermilker'] = Supermilker
 
