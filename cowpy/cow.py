@@ -34,7 +34,7 @@ EYES = {
     'wired': "OO",
     'young': "..",
 }
-NOT_SAFE_FOR_WORK_COWACTERS = ['bongcow', 'sodomized', 'headincow']
+NOT_SAFE_FOR_WORK_COWACTERS = ['bongcow', 'sodomized', 'headincow', 'telebears']
 NOT_SAFE_FOR_WORK_EYES = ['stoned']
 
 
