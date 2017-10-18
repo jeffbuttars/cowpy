@@ -42,7 +42,7 @@ def get_cowacters(sfw=True, sort=False):
     cows = COWACTERS
     if sfw:
         ckeys = set(COWACTERS.keys()) - set(NOT_SAFE_FOR_WORK_COWACTERS)
-        cows = {k: cows[k] for k in ckeys}
+        cows = dict([(k, cows[k]) for k in ckeys])
 
     if sort:
         return sorted(cows.items(), key=lambda x: x[0])
@@ -54,7 +54,7 @@ def get_eyes(sfw=True, sort=False):
     eyes = EYES
     if sfw:
         ekeys = set(EYES.keys()) - set(NOT_SAFE_FOR_WORK_EYES)
-        eyes = {k: eyes[k] for k in ekeys}
+        eyes = dict([(k, eyes[k]) for k in ekeys])
 
     if sort:
         return sorted(eyes.items(), key=lambda x: x[0])
@@ -102,14 +102,14 @@ class Cowacter(object):
         lines = message.splitlines()
         max = self._maxlen(lines)
         max2 = max + 2  # border spacing
-        fmt = "{} {} {}{}\n"
+        fmt = "{0} {1} {2}{3}\n"
         res = ""
 
         def pad(llen):
             return ' ' * (max - llen)
 
         # Try to kick out just the balloon first.
-        res += " {} \n".format('_' * max2)
+        res += " {0} \n".format('_' * max2)
         if len(lines) > 1:
             if len(lines) == 2:
                 line = lines.pop(0)
@@ -128,14 +128,14 @@ class Cowacter(object):
             line = lines.pop()
             res += fmt.format('<', line, pad(len(line)), '>')
 
-        res += " {} \n".format('-' * max2)
+        res += " {0} \n".format('-' * max2)
         return res
 
     def milk(self, msg):
         msg = msg.strip()
 
         if not msg:
-            msg = "{}, eyes:{}, tongue:{}, thoughts:{}".format(
+            msg = "{0}, eyes:{1}, tongue:{2}, thoughts:{3}".format(
                 self.__class__.__name__,
                 self._eye_type,
                 bool(self._tongue),
@@ -148,7 +148,7 @@ class Cowacter(object):
                                            eyes=self._eyes,
                                            tongue=self._tongue)
         except Exception as e:
-            return "Unable to print the message :(\n{}".format(e)
+            return "Unable to print the message :(\n{0}".format(e)
 
 
 COWACTERS['default'] = Cowacter
@@ -1185,10 +1185,10 @@ def main():
         outfile = ''.join(os.path.splitext(outfile)[:-1]) + '.py'
 
         if os.path.exists(bname):
-            print("The file {} bname already exists, not making the copy.")
+            print("The file {0} bname already exists, not making the copy.")
             sys.exit(1)
         else:
-            print("{} -> {}".format(thisfile, outfile))
+            print("{0} -> {1}".format(thisfile, outfile))
 
         shutil.copyfile(thisfile, outfile)
         exit_early = True
@@ -1201,13 +1201,13 @@ def main():
 
                     nsfw = (not_safe_for_work(cow=cow_name, eyes=eye_name) and ' : NSFW') or ''
 
-                    print(cow(eyes=eye_name).milk("{}, eye is {}{}".format(
+                    print(cow(eyes=eye_name).milk("{0}, eye is {1}{2}".format(
                         cow_name, eye_name, nsfw)))
                     print(cow(
                         eyes=eye_name, thoughts=True).milk(
-                            "{}, eye is {}, with bubble{}".format(cow_name, eye_name, nsfw)))
+                            "{0}, eye is {1}, with bubble{2}".format(cow_name, eye_name, nsfw)))
                     print(cow(
-                        eyes=eye_name, tongue=True).milk("{}, eye is {}, with tounge{}".format(
+                        eyes=eye_name, tongue=True).milk("{0}, eye is {1}, with tounge{2}".format(
                             cow_name, eye_name, nsfw)))
             else:
                 nsfw = (not_safe_for_work(cow=cow_name) and ' : NSFW') or ''
@@ -1216,7 +1216,7 @@ def main():
     if args.list_eyes:
         exit_early = True
         for k, v in get_eyes(sfw=sfw, sort=True):
-            print("{} : '{}'{}".format(k, v, (not_safe_for_work(eyes=k) and ' : NSFW') or ''))
+            print("{0} : '{1}'{2}".format(k, v, (not_safe_for_work(eyes=k) and ' : NSFW') or ''))
 
     if exit_early:
         sys.exit(0)
@@ -1227,7 +1227,7 @@ def main():
         try:
             cow = get_cow(args.cowacter.lower())
         except KeyError:
-            print("{} is an invalid cowacter".format(args.cowacter))
+            print("{0} is an invalid cowacter".format(args.cowacter))
             sys.exit(1)
 
     if args.random:
