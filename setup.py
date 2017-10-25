@@ -9,7 +9,7 @@ setup(name='cowpy',
       author="Jeff Buttars",
       author_email="jeffbuttars@gmail.com",
       url="https://github.com/jeffbuttars/cowpy",
-      version='1.0.1',
+      version='1.0.2',
       packages=['cowpy'],
       scripts=['scripts/cowpy']
       )
