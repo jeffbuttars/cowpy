@@ -38,8 +38,17 @@ cheese = cow.Moose(thoughts=True, tongue=True, eyes='dead')
 msg = cheese.milk("My witty mesage with several attributes")
 print(msg)
 
-# Create a random cow with a message
+# Create a random cow with a one-line message
 msg = cow.milk_random_cow("A random message for fun")
+print(msg)
+
+# Create a random cow with a multi-line message
+msg = cow.milk_random_cow("\n".join([
+    "A random multi-line message:",
+    "1. for fun",
+    "2. for fun",
+    "3. and for fun"
+]))
 print(msg)
 
 # all the eye options
