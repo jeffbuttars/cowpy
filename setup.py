@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-import setuptools
 from setuptools import setup
 
 setup(name='cowpy',
@@ -9,7 +8,7 @@ setup(name='cowpy',
       author="Jeff Buttars",
       author_email="jeffbuttars@gmail.com",
       url="https://github.com/jeffbuttars/cowpy",
-      version='1.0.2',
+      version='1.0.3',
       packages=['cowpy'],
       scripts=['scripts/cowpy']
       )
