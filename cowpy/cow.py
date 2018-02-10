@@ -88,47 +88,25 @@ class Cowacter(object):
                               "          {tongue} ||----w |\n"
                               "           ||     ||")
 
-    def _maxlen(self, lines):
-        m = -1
-        for line in lines:
-            l = len(line)
-            if l > m:
-                m = l
-
-        return m
-
     def _bubble(self, message):
-
         lines = message.splitlines()
-        max = self._maxlen(lines)
-        max2 = max + 2  # border spacing
-        fmt = "{0} {1} {2}{3}\n"
+        content_len = max(len(line) for line in lines)
+        border_len = content_len + 2
+        fmt = "{0} {1} {2}\n"
         res = ""
 
-        def pad(llen):
-            return ' ' * (max - llen)
-
         # Try to kick out just the balloon first.
-        res += " {0} \n".format('_' * max2)
+        res += " {0} \n".format('_' * border_len)
+
         if len(lines) > 1:
-            if len(lines) == 2:
-                line = lines.pop(0)
-                res += fmt.format('/', line, pad(len(line)), '\\')
-                line = lines.pop(0)
-                res += fmt.format('\\', line, pad(len(line)), '/')
-            else:
-                line = lines.pop(0)
-                lastline = lines.pop(0)
-                res += fmt.format('/', line, pad(len(line)), '\\')
-                for line in lines:
-                    res += fmt.format('|', line, pad(len(line)), '|')
-
-                res += fmt.format('\\', lastline, pad(len(lastline)), '/')
+            res += fmt.format('/', lines[0].ljust(content_len), '\\')
+            for i in range(1, len(lines) - 1):
+                res += fmt.format('|', lines[i].ljust(content_len), '|')
+            res += fmt.format('\\', lines[-1].ljust(content_len), '/')
         else:
-            line = lines.pop()
-            res += fmt.format('<', line, pad(len(line)), '>')
+            res += fmt.format('<', lines[0].ljust(content_len), '>')
 
-        res += " {0} \n".format('-' * max2)
+        res += " {0} \n".format('-' * border_len)
         return res
 
     def milk(self, msg):
