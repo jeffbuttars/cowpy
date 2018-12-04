@@ -10,5 +10,5 @@ setup(name='cowpy',
       url="https://github.com/jeffbuttars/cowpy",
       version='1.0.3',
       packages=['cowpy'],
-      scripts=['scripts/cowpy']
+      scripts=['scripts/cowpy', 'scripts/cowpy.bat']
       )
