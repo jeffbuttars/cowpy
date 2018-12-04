@@ -1,1 +1,14 @@
-VC_PYTHON_EXE=python2
+# VC_PYTHON_EXE The python executable name to use
+VC_PYTHON_EXE='python3'
+
+# VC_VENV_REQFILE The name of the requirements file to use for standard packaging
+VC_VENV_REQFILE='requirements.txt'
+
+# VC_VIRTUALENV_EXE The name of the virtualenv executable to use
+VC_VIRTUALENV_EXE='virtualenv'
+
+# VC_VENV_NEW_SHELL use 'pipenv shell' to enter the virtualenv in a new shell
+VC_VENV_NEW_SHELL='false'
+
+# PIPENV_VENV_IN_PROJECT
+export PIPENV_VENV_IN_PROJECT=.venv
