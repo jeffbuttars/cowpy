@@ -2,7 +2,7 @@
 
 from setuptools import setup
 
-__version__ = "1.1.1"
+__version__ = "1.1.2"
 
 setup(name="cowpy",
       description="A cowsay clone for python in one file.",
@@ -11,7 +11,7 @@ setup(name="cowpy",
       url="https://github.com/jeffbuttars/cowpy",
       version=__version__,
       packages=["cowpy"],
-      license="MIT",
+      license="Apache License 2.0",
       license_files=("LICENSE.md",),
       scripts=["scripts/cowpy", "scripts/cowpy.bat"]
       )
