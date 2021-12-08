@@ -2,7 +2,7 @@
 
 from setuptools import setup  # type: ignore
 
-__version__ = "1.1.3"
+__version__ = "1.1.4"
 
 
 def get_long_description():
