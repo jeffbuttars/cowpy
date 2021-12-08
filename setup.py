@@ -4,9 +4,20 @@ from setuptools import setup  # type: ignore
 
 __version__ = "1.1.3"
 
+
+def get_long_description():
+    """
+    Return the README.
+    """
+    with open("README.md", encoding="utf8") as f:
+        return f.read()
+
+
 setup(
     name="cowpy",
     description="A cowsay clone for python in one file.",
+    long_description=get_long_description(),
+    long_description_content_type="text/markdown",
     author="Jeff Buttars",
     author_email="jeffbuttars@gmail.com",
     url="https://github.com/jeffbuttars/cowpy",
