@@ -19,7 +19,7 @@ if ! command -v "${PREFIX}twine" &>/dev/null ; then
 fi
 
 ${PREFIX}python setup.py sdist
- ${PREFIX}twine upload dist/*
+${PREFIX}twine upload dist/*
 
 # If you want to test first
 #${PREFIX}twine upload --repository testpypi  dist/*
