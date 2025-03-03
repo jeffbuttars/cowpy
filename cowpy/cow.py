@@ -2,7 +2,12 @@
 # encoding: utf-8
 from __future__ import print_function
 
+import argparse
 import logging
+import os
+import random
+import shutil
+import sys
 
 # Set up the logger
 logger = logging.getLogger("cowpy")
@@ -14,12 +19,6 @@ log_formatter = logging.Formatter(('%(levelname)s: %(asctime)s %(processName)s:%
                                    ' -- %(message)s'))
 logger_ch.setFormatter(log_formatter)
 logger.addHandler(logger_ch)
-
-import sys
-import os
-import shutil
-import argparse
-import random
 
 
 COWACTERS = {}
@@ -147,7 +146,7 @@ class Beavis(Cowacter):
             "         _| =-.     .-.   ||\n"
             "         o|/o/       _.   |\n"
             "         /  ~          \\ |\n"
-            "       (____\@)  ___~    |\n"
+            "       (____@)  ___~    |\n"
             "          |_===~~~.`    |\n"
             "       _______.--~     |\n"
             "       \\________       |\n"
@@ -300,7 +299,7 @@ class DragonAndCow(Cowacter):
                 "               {thoughts}   |\\___/|      /   \\//  .\\\n"
                 "                {thoughts}  /O  O  \\__  /    //  | \\ \\           *----*\n"
                 "                  /     /  \\/_/    //   |  \\  \\          \\   |\n"
-                "                  \@___\@`    \\/_   //    |   \\   \\         \\/\\ \\\n"
+                "                  @___@``    \\/_   //    |   \\   \\         \\/\\ \\\n"
                 "                 0/0/|       \\/_ //     |    \\    \\         \\ \\\n"
                 "             0/0/0/0/|        \\///      |     \\     \\       | |\n"
                 "          0/0/0/0/0/_|_ /   (  //       |      \\     _\\     |  /\n"
@@ -325,12 +324,12 @@ class Eyes(Cowacter):
             "     {thoughts}\n"
             "                                   .::!!!!!!!:.\n"
             "  .!!!!!:.                        .:!!!!!!!!!!!!\n"
-            "  ~~~~!!!!!!.                 .:!!!!!!!!!UWWW\$\$\$ \n"
-            "      :\$\$NWX!!:           .:!!!!!!XUWW\$\$\$\$\$\$\$\$\$P \n"
-            "      \$\$\$\$\$##WX!:      .<!!!!UW\$\$\$\$\"  \$\$\$\$\$\$\$\$#\n"
-            "      \$\$\$\$\$  \$\$\$UX   :!!UW\$\$\$\$\$\$\$\$\$   4\$\$\$\$\$\* \n"
-            "      ^\$\$\$B  \$\$\$\$\\     \$\$\$\$\$\$\$\$\$\$\$\$   d\$\$R\n"
-            "        \"*\$bd\$\$\$\$      '*\$\$\$\$\$\$\$\$\$\$\$o+#\" \n"
+            "  ~~~~!!!!!!.                 .:!!!!!!!!!UWWW`$`$`$ \n"
+            "      :`$`$NWX!!:           .:!!!!!!XUWW`$`$`$`$`$`$`$`$`$P \n"
+            "      `$`$`$`$`$##WX!:      .<!!!!UW`$`$`$`$\"  `$`$`$`$`$`$`$`$#\n"
+            "      `$`$`$`$`$  `$`$`$UX   :!!UW`$`$`$`$`$`$`$`$`$   4`$`$`$`$`$`* \n"
+            "      ^`$`$`$B  `$`$`$`$\\     `$`$`$`$`$`$`$`$`$`$`$`$   d`$`$R\n"
+            "        \"*`$bd`$`$`$`$      '*`$`$`$`$`$`$`$`$`$`$`$o+#\" \n"
             "             \"\"\"\"          \"\"\"\"\"\"\" \n")
         super(Eyes, self).__init__(**kwargs)
 
@@ -347,9 +346,9 @@ class FlamingSheep(Cowacter):
             "    {thoughts}    .; .  : .' :  :  : . \n"
             "     {thoughts}   i..`: i` i.i.,i  i . \n"
             "      {thoughts}   `,--.|i |i|ii|ii|i: \n"
-            "           U{eyes}U\\.'\@\@\@\@\@\@`.||' \n"
-            "           \\__/(\@\@\@\@\@\@\@\@\@\@)'  \n"
-            "                (\@\@\@\@\@\@\@\@)    \n"
+            "           U{eyes}U\\.'@@@@@@`.||' \n"
+            "           \\__/(@@@@@@@@@@)'  \n"
+            "                (@@@@@@@@)    \n"
             "                `YY~~~~YY'    \n"
             "                 ||    ||     ")
         super(FlamingSheep, self).__init__(**kwargs)
@@ -556,12 +555,12 @@ class MechAndCow(Cowacter):
             "                           ,-------._| |== ||//\n"
             "                           |       |_|P`.  /'/\n"
             "                           `-------' 'Y Y/'/'\n"
-            "                                     .==\ /_\\\n"
+            "                                     .==\\ /_\\\n"
             "   ^__^                             /   /'|  `i\n"
-            "   (oo)\_______                   /'   /  |   |\n"
-            "   (__)\       )\/\             /'    /   |   `i\n"
-            "       ||----w |           ___,;`----'.___L_,-'`\__\n"
-            "       ||     ||          i_____;----\.____i\"\"\____\\")
+            "   (oo)\\_______                   /'   /  |   |\n"
+            "   (__)\\       )/\\             /'    /   |   `i\n"
+            "       ||----w |           ___,;`----'.___L_,-'`\\__\n"
+            "       ||     ||          i_____;----\\.____i\"\"\\____\\")
         super(MechAndCow, self).__init__(**kwargs)
 
 
@@ -575,7 +574,7 @@ class Meow(Cowacter):
             "   {thoughts} ,   _ ___.--'''`--''//-,-_--_.\n"
             "      \\`\"' ` || \\\\ \\ \\\\/ / // / ,-\\\\`,_\n"
             "     /'`  \\ \\ || Y  | \\|/ / // / - |__ `-,\n"
-            "    /\@\"\\  ` \\ `\\ |  | ||/ // | \\/  \\  `-._`-,_.,\n"
+            "    /@\"\\  ` \\ `\\ |  | ||/ // | \\/  \\  `-._`-,_.,\n"
             "   /  _.-. `.-\\,___/\\ _/|_/_\\_\\/|_/ |     `-._._)\n"
             "   `-'``/  /  |  // \\__/\\__  /  \\__/ \\\n"
             "        `-'  /-\\/  | -|   \\__ \\   |-' |\n"
@@ -708,9 +707,9 @@ class Sheep(Cowacter):
             "  {thoughts}\n"
             "   {thoughts}\n"
             "       __     \n"
-            "      U{eyes}U\\.'\@\@\@\@\@\@`.\n"
-            "      \\__/(\@\@\@\@\@\@\@\@\@\@)\n"
-            "           (\@\@\@\@\@\@\@\@)\n"
+            "      U{eyes}U\\.'@@@@@@`.\n"
+            "      \\__/(@@@@@@@@@@)\n"
+            "           (@@@@@@@@)\n"
             "           `YY~~~~YY'\n"
             "            ||    ||")
         super(Sheep, self).__init__(**kwargs)
@@ -772,11 +771,11 @@ class Squirrel(Cowacter):
             "  {thoughts}\n"
             "     {thoughts}\n"
             "                  _ _\n"
-            "       | \__/|  .~    ~.\n"
+            "       | \\__/|  .~    ~.\n"
             "       /{eyes} `./      .'\n"
-            "      {{o__,   \    {{\n"
+            "      {{o__,   \\    {{\n"
             "        / .  . )    \\\n"
-            "        `-` '-' \    }}\n"
+            "        `-` '-' \\    }}\n"
             "       .(   _(   )_.'\n"
             "      '---.~_ _ _|")
         super(Squirrel, self).__init__(**kwargs)
@@ -913,7 +912,7 @@ class Turkey(Cowacter):
             "     {thoughts}                    +^       _ _++*+_+++_,         )\n"
             "              _+^^*+_    (     ,+*^ ^          \\+_        )\n"
             "             {{       )  (    ,(    ,_+--+--,      ^)      ^\\\n"
-            "            {{ (\@)    }} f   ,(  ,+-^ __*_*_  ^^\\_   ^\\       )\n"
+            "            {{ (@)    }} f   ,(  ,+-^ __*_*_  ^^\\_   ^\\       )\n"
             "           {{:;-/    (_+*-+^^^^^+*+*<_ _++_)_    )    )      /\n"
             "          ( /  (    (        ,___    ^*+_+* )   <    <      \\\n"
             "           U _/     )    *--<  ) ^\\-----++__)   )    )       )\n"
@@ -1069,7 +1068,7 @@ COWACTERS['stegosaurus'] = Stegosaurus
 
 
 def get_cow(name='default'):
-    return COWACTERS.get(name, 'default')
+    return COWACTERS.get(name)
 
 
 def eye_options():
@@ -1202,12 +1201,11 @@ def main():
     logger.debug("find the cow")
     cow = get_cow()
     if args.cowacter:
-        try:
-            cow = get_cow(args.cowacter.lower())
-        except KeyError:
+        cow = get_cow(args.cowacter.lower())
+
+        if not cow:
             print("{0} is an invalid cowacter".format(args.cowacter))
             sys.exit(1)
-
     if args.random:
         print(milk_random_cow(msg, sfw=sfw))
         sys.exit(0)
